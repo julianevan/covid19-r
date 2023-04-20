@@ -4,11 +4,12 @@ install.packages("dplyr")
 library(readr)
 library(tibble)
 library(dplyr)
-data <- read.csv("D:/owid-covid-data.csv")
+data <- read.csv("owid-covid-data.csv")
 colnames(data)
 hdi <- data$human_development_index
 hdi_sq <- hdi^2
 pop_den <- data$population_density
+fullvax <- data$people_fully_vaccinated
 le <- data$life_expectancy
 y <- data$total_deaths
 pop <- data$population
@@ -30,3 +31,5 @@ reg_8 <- lm(y~pop)
 print(summary(reg_8))
 reg_9 <- lm(y~hdi_sq+pop_den+le+pop)
 print(summary(reg_9))
+reg_10 <- lm(y~hdi_sq+pop_den+le+pop+fullvax)
+print(summary(reg_10))
